@@ -1,39 +1,316 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Wedding Envelope Animation</title>
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save the Date</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: #f7f1eb;
+      color: #51443c;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(2.6rem, 8vw, 3.8rem);
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      margin-bottom: 70px;
+      color: #8c786b;
+    }
+
+    /* Envelope */
+
+    .envelope-wrapper {
+      position: relative;
+      display: block;
+      width: min(320px, 85vw);
+      height: 210px;
+      margin: 0 auto 30px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      perspective: 1000px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 0;
+      background: #c9a995;
+      border-radius: 3px;
+      box-shadow: 0 15px 30px rgba(75, 53, 40, 0.16);
+    }
+
+    /* The letter */
+
+    .letter {
+      position: absolute;
+      left: 6%;
+      bottom: 5px;
+      width: 88%;
+      height: 190px;
+      padding: 24px 12px;
+      background: #fffdf9;
+      border: 1px solid #e8d9ca;
+      z-index: 2;
+      overflow: hidden;
+      transition:
+        transform 1s ease,
+        height 1s ease,
+        z-index 0s 0.5s;
+    }
+
+    .invitation {
+      opacity: 0;
+      transition: opacity 0.6s ease 0.25s;
+    }
+
+    .invitation h2 {
+      margin: 0 0 12px;
+      font-family: "Dancing Script", cursive;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    .invitation .names {
+      font-size: 1.8rem;
+      margin: 8px 0;
+    }
+
+    .invitation .date {
+      margin: 12px 0;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .invitation .location {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .invitation .note {
+      margin-top: 18px;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    /* Envelope front */
+
+    .front {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: #d8b9a4;
+      clip-path: polygon(
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%,
+        0 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Envelope flap */
+
+    .flap {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: #e3c8b5;
+      clip-path: polygon(0 0, 100% 0, 50% 58%);
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition:
+        transform 0.7s ease,
+        z-index 0s 0.35s;
+      backface-visibility: visible;
+      pointer-events: none;
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 6;
+      left: 50%;
+      top: 48%;
+      width: 38px;
+      height: 38px;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #a76e60;
+      color: #fff8f0;
+      font-size: 19px;
+      box-shadow: 0 2px 5px rgba(70, 40, 30, 0.12);
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .hint {
+      color: #8c786b;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      margin-top: 65px;
+      color: #8c786b;
+      font-size: 1.05rem;
+    }
+
+    /* Open animation */
+
+    .envelope-wrapper.is-open .flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-wrapper.is-open .letter {
+      height: 330px;
+      transform: translateY(-125px);
+      z-index: 6;
+      transition:
+        transform 1s ease 0.35s,
+        height 1s ease 0.35s,
+        z-index 0s 0.35s;
+      overflow: visible;
+    }
+
+    .envelope-wrapper.is-open .invitation {
+      opacity: 1;
+      transition-delay: 0.9s;
+    }
+
+    .envelope-wrapper.is-open .seal {
+      opacity: 0;
+    }
+
+    @media (max-width: 400px) {
+      .subtitle {
+        margin-bottom: 55px;
+      }
+
+      .envelope-wrapper.is-open .letter {
+        height: 340px;
+        transform: translateY(-130px);
+      }
+
+      .invitation h2 {
+        font-size: 1.9rem;
+      }
+
+      .invitation .names {
+        font-size: 1.55rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Wedding Invitation</h1>
-        <p class="subtitle">Hover over the envelope to open</p>
-        
-        <div class="envelope-wrapper">
-            <div class="envelope">
-                <div class="flap"></div>
-                <div class="front"></div>
-                <div class="letter">
-                    <div class="invitation">
-                        <h2>You're Invited!</h2>
-                        <p>To the wedding of<br><strong>Emma & Liam</strong></p>
-                        <span>June 21, 2026</span>
-                        <p class="details">
-                            Garden Estate<br>
-                            Sunset Venue<br>
-                            6:00 PM
-                        </p>
-                    </div>
-                </div>
-            </div>
+  <main class="container">
+    <h1>Save the Date</h1>
+    <p class="subtitle">A little note for a very special day</p>
+
+    <button
+      class="envelope-wrapper"
+      id="envelopeButton"
+      type="button"
+      aria-label="Open the save-the-date envelope"
+      aria-expanded="false"
+    >
+      <div class="envelope">
+        <div class="letter">
+          <div class="invitation">
+            <h2>We're Getting Married!</h2>
+
+            <p>With love,</p>
+
+            <p class="names">Your Name &amp; Your Partner's Name</p>
+
+            <p class="date">Your Wedding Date</p>
+
+            <p class="location">
+              Your City or Venue<br>
+              Province / Country
+            </p>
+
+            <p class="note">
+              Formal invitation to follow
+            </p>
+          </div>
         </div>
-        
-        <footer>
-            <p>💌 RSVP by June 14, 2026</p>
-        </footer>
-    </div>
+
+        <div class="front"></div>
+        <div class="flap"></div>
+        <div class="seal">♥</div>
+      </div>
+    </button>
+
+    <p class="hint" id="hint">Click or tap the envelope to open</p>
+
+    <footer class="footer">
+      We can't wait to celebrate with you!
+    </footer>
+  </main>
+
+  <script>
+    const envelopeButton = document.getElementById("envelopeButton");
+    const hint = document.getElementById("hint");
+
+    envelopeButton.addEventListener("click", () => {
+      const isOpen = envelopeButton.classList.toggle("is-open");
+
+      envelopeButton.setAttribute("aria-expanded", String(isOpen));
+      envelopeButton.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close the save-the-date envelope"
+          : "Open the save-the-date envelope"
+      );
+
+      hint.textContent = isOpen
+        ? "Click or tap to close"
+        : "Click or tap the envelope to open";
+    });
+  </script>
 </body>
 </html>
