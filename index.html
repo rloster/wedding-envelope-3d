@@ -13,7 +13,7 @@
 
   <style>
     /* =========================================
-       AUTUMN WEDDING COLOUR PALETTE
+       AUTUMN COLOUR PALETTE
     ========================================= */
 
     :root {
@@ -50,21 +50,12 @@
       color: var(--ink);
       font-family: var(--serif);
       font-size: 19px;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    body,
     button,
     a {
       -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
     }
 
     img {
@@ -77,7 +68,7 @@
     }
 
     /* =========================================
-       FALLING AUTUMN LEAVES
+       LARGE FALLING LEAVES
     ========================================= */
 
     .leaf-layer {
@@ -85,82 +76,179 @@
       inset: 0;
       overflow: hidden;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
 
     .leaf {
       position: absolute;
-      top: -70px;
+      top: -110px;
       left: var(--left);
+
       font-size: var(--size);
+      line-height: 1;
+
       opacity: 0;
-      animation: leaf-fall var(--duration) var(--delay) linear infinite;
-      filter: drop-shadow(0 3px 3px #4b30251a);
+      filter: drop-shadow(0 4px 4px #4b30251a);
+
+      animation:
+        leaf-fall var(--duration) var(--delay) linear infinite;
     }
 
     @keyframes leaf-fall {
       0% {
-        transform: translate3d(0, -30px, 0) rotate(0deg);
+        transform: translate3d(0, -80px, 0) rotate(0deg);
         opacity: 0;
       }
 
       10% {
-        opacity: var(--opacity, 0.7);
+        opacity: var(--opacity, 0.72);
       }
 
-      50% {
-        transform: translate3d(var(--drift, 45px), 50vh, 0)
-          rotate(180deg);
+      45% {
+        transform:
+          translate3d(var(--drift, 80px), 45vh, 0)
+          rotate(170deg);
       }
 
-      90% {
-        opacity: var(--opacity, 0.7);
+      85% {
+        opacity: var(--opacity, 0.72);
       }
 
       100% {
-        transform: translate3d(-25px, 110vh, 0) rotate(360deg);
+        transform:
+          translate3d(-45px, 115vh, 0)
+          rotate(360deg);
         opacity: 0;
       }
     }
 
+    /* These leaves are roughly three times larger. */
+
     .leaf-one {
-      --left: 8%;
-      --size: 27px;
-      --duration: 13s;
-      --delay: -2s;
-      --drift: 45px;
+      --left: 4%;
+      --size: 78px;
+      --duration: 19s;
+      --delay: -3s;
+      --drift: 90px;
+      --opacity: 0.75;
     }
 
     .leaf-two {
-      --left: 27%;
-      --size: 19px;
-      --duration: 16s;
-      --delay: -9s;
-      --drift: -35px;
+      --left: 24%;
+      --size: 62px;
+      --duration: 23s;
+      --delay: -12s;
+      --drift: -75px;
+      --opacity: 0.68;
     }
 
     .leaf-three {
-      --left: 49%;
-      --size: 25px;
-      --duration: 14s;
-      --delay: -5s;
-      --drift: 35px;
+      --left: 48%;
+      --size: 84px;
+      --duration: 21s;
+      --delay: -7s;
+      --drift: 65px;
+      --opacity: 0.7;
     }
 
     .leaf-four {
-      --left: 70%;
-      --size: 22px;
-      --duration: 17s;
-      --delay: -12s;
-      --drift: -40px;
+      --left: 71%;
+      --size: 70px;
+      --duration: 25s;
+      --delay: -16s;
+      --drift: -80px;
+      --opacity: 0.7;
     }
 
     .leaf-five {
       --left: 91%;
-      --size: 30px;
-      --duration: 15s;
-      --delay: -7s;
-      --drift: 30px;
+      --size: 90px;
+      --duration: 22s;
+      --delay: -10s;
+      --drift: 65px;
+      --opacity: 0.72;
+    }
+
+    .leaf-six {
+      --left: 37%;
+      --size: 53px;
+      --duration: 24s;
+      --delay: -18s;
+      --drift: 55px;
+      --opacity: 0.65;
+    }
+
+    /* =========================================
+       DRAWN AUTUMN TREES
+    ========================================= */
+
+    .tree-frame {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .autumn-tree {
+      position: absolute;
+      bottom: 0;
+      width: clamp(115px, 19vw, 225px);
+      height: 100%;
+      max-height: 850px;
+      opacity: 0.7;
+    }
+
+    .autumn-tree.left {
+      left: 0;
+    }
+
+    .autumn-tree.right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    /* All the tree art is SVG drawn in the HTML.
+       No extra tree image files are required. */
+
+    .tree-trunk {
+      fill: none;
+      stroke: #785b43;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tree-branch {
+      fill: none;
+      stroke: #785b43;
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    .foliage-rust {
+      fill: #b56545;
+    }
+
+    .foliage-orange {
+      fill: #d18a4c;
+    }
+
+    .foliage-gold {
+      fill: #d9b66f;
+    }
+
+    .foliage-olive {
+      fill: #777d59;
+    }
+
+    .foliage-burgundy {
+      fill: #925058;
+    }
+
+    .tree-ground {
+      fill: #9b815e;
+      opacity: 0.55;
     }
 
     /* =========================================
@@ -171,8 +259,10 @@
       position: fixed;
       inset: 0;
       z-index: 20;
+
       display: grid;
       place-items: center;
+
       padding: 24px 18px;
       overflow: hidden;
 
@@ -195,21 +285,12 @@
       inset: 20px;
       border: 1px solid #b78b6b66;
       pointer-events: none;
-    }
-
-    .intro::after {
-      content: "✦";
-      position: absolute;
-      top: 45px;
-      right: 50px;
-      color: var(--gold);
-      font-size: 27px;
-      opacity: 0.75;
+      z-index: 2;
     }
 
     .intro-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       width: 100%;
       max-width: 540px;
       text-align: center;
@@ -240,7 +321,7 @@
       letter-spacing: 1px;
     }
 
-    /* The clickable envelope */
+    /* Envelope */
 
     .envelope-button {
       display: block;
@@ -249,10 +330,13 @@
       height: 215px;
       margin: 0 auto;
       padding: 0;
+
       border: 0;
       background: transparent;
+
       cursor: pointer;
       perspective: 1200px;
+
       filter: drop-shadow(0 18px 20px #583c3024);
       transition: transform 0.35s ease;
     }
@@ -270,19 +354,20 @@
     .envelope {
       position: absolute;
       inset: 0;
+      overflow: visible;
+
       background: #c7a68b;
       border: 1px solid #a9846b;
       border-radius: 4px;
-      overflow: visible;
     }
 
     .envelope::after {
       content: "";
       position: absolute;
       inset: 8px;
+      z-index: 7;
       border: 1px solid #f5e7d180;
       pointer-events: none;
-      z-index: 7;
     }
 
     .letter {
@@ -290,15 +375,18 @@
       left: 7%;
       bottom: 5px;
       z-index: 2;
-      width: 86%;
-      height: 180px;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
+      width: 86%;
+      height: 180px;
       padding: 15px;
-      background:
-        linear-gradient(145deg, #fffdf7, #f7ebdc);
+
+      background: linear-gradient(145deg, #fffdf7, #f7ebdc);
       border: 1px solid #e2d1bd;
+
       transition:
         transform 1.15s cubic-bezier(0.2, 0.7, 0.2, 1),
         height 1.15s ease;
@@ -317,6 +405,7 @@
       color: var(--ink);
       opacity: 0;
       transform: translateY(8px);
+
       transition:
         opacity 0.6s ease,
         transform 0.6s ease;
@@ -340,7 +429,9 @@
       position: absolute;
       inset: 0;
       z-index: 4;
+
       background: linear-gradient(145deg, #b99073, #c6a087);
+
       clip-path: polygon(
         0 0,
         50% 59%,
@@ -348,6 +439,7 @@
         100% 100%,
         0 100%
       );
+
       pointer-events: none;
     }
 
@@ -355,13 +447,16 @@
       position: absolute;
       inset: 0;
       z-index: 5;
+
       background: linear-gradient(150deg, #d8bba0, #c9a58a);
       clip-path: polygon(0 0, 100% 0, 50% 61%);
+
       transform-origin: top center;
-      backface-visibility: visible;
+
       transition:
         transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
         opacity 0.4s ease;
+
       pointer-events: none;
     }
 
@@ -370,23 +465,29 @@
       top: 49%;
       left: 50%;
       z-index: 8;
+
       display: grid;
       place-items: center;
+
       width: 44px;
       height: 44px;
+
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 30%, #a85c60, #71343d 75%);
+
+      background: radial-gradient(circle at 35% 30%, #a85c60, #71343d 75%);
       border: 2px solid #a96965;
       color: #f7e7d5;
       font-size: 21px;
+
       box-shadow:
         0 3px 7px #5b302c50,
         inset 0 0 0 2px #d9a9a044;
+
       transition:
         opacity 0.3s ease,
         transform 0.4s ease;
+
       pointer-events: none;
     }
 
@@ -400,13 +501,8 @@
     }
 
     @keyframes hint-pulse {
-      0%, 100% {
-        opacity: 0.65;
-      }
-
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0.65; }
+      50% { opacity: 1; }
     }
 
     .intro.opening .envelope-flap {
@@ -437,18 +533,20 @@
     }
 
     /* =========================================
-       INVITATION PAGE
+       MAIN SCROLLABLE PAGE
     ========================================= */
 
     .invitation-page {
       position: fixed;
       inset: 0;
       z-index: 10;
+
       overflow-y: auto;
       overflow-x: hidden;
       overscroll-behavior: contain;
 
       background: var(--paper);
+
       opacity: 0;
       visibility: hidden;
 
@@ -464,25 +562,27 @@
 
     .page-inner {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
       background: var(--paper);
     }
 
     /* =========================================
-       HERO
+       FULL-PAGE HERO WITH TREES
     ========================================= */
 
     .hero {
       position: relative;
+
       display: flex;
       min-height: 94svh;
       align-items: center;
       justify-content: center;
+
       padding: 90px 24px;
-      text-align: center;
       overflow: hidden;
+      text-align: center;
 
       background:
         radial-gradient(
@@ -490,37 +590,23 @@
           #fffaf1 0%,
           transparent 65%
         ),
-        linear-gradient(
-          150deg,
-          #f3e5d5,
-          #faf3e9 55%,
-          #e7e3d2
-        );
+        linear-gradient(150deg, #f3e5d5, #faf3e9 55%, #e7e3d2);
     }
 
     .hero::before {
       content: "";
       position: absolute;
       inset: 22px;
+      z-index: 1;
       border: 1px solid #b58b6a88;
       pointer-events: none;
-    }
-
-    .hero::after {
-      content: "❧";
-      position: absolute;
-      bottom: 18px;
-      right: 24px;
-      color: var(--rust);
-      font-size: 60px;
-      opacity: 0.35;
-      transform: rotate(-20deg);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      width: 100%;
+      max-width: 720px;
     }
 
     .hero h1 {
@@ -571,23 +657,20 @@
     }
 
     @keyframes gentle-bob {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(5px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
     }
 
     /* =========================================
-       GENERAL SECTIONS
+       SHORT, SIMPLE SECTIONS
+       These keep their clean background colours.
     ========================================= */
 
     .section {
       position: relative;
       padding: 95px 28px;
       text-align: center;
+      background: var(--paper);
     }
 
     .section-heading {
@@ -614,30 +697,45 @@
       letter-spacing: 7px;
     }
 
-    .story {
-      background: var(--paper);
-    }
-
-    .story .section-copy {
-      max-width: 660px;
-    }
-
     .accent-text {
       color: var(--rust-dark);
       font-style: italic;
     }
 
     /* =========================================
-       INTEGRATED PHOTO LAYOUTS
+       LONGER STORY SECTIONS WITH TREE BORDERS
     ========================================= */
 
+    .memory-section {
+      position: relative;
+      padding: 95px 35px;
+      overflow: hidden;
+    }
+
+    .memory-section.warm {
+      background: #f2e5d6;
+    }
+
+    .memory-section.light {
+      background: #fffaf2;
+    }
+
+    .memory-section.olive {
+      background: #e9e8dc;
+    }
+
     .memory-row {
+      position: relative;
+      z-index: 2;
+
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 50px;
-      max-width: 900px;
+
+      max-width: 870px;
       margin: 0 auto;
+
       text-align: left;
     }
 
@@ -665,9 +763,9 @@
       content: "";
       position: absolute;
       inset: 5px;
+      z-index: 1;
       border: 1px solid #c7a16c80;
       pointer-events: none;
-      z-index: 1;
     }
 
     .memory-image img {
@@ -676,6 +774,14 @@
       aspect-ratio: 4 / 5;
       object-fit: cover;
       background: #e9ddce;
+    }
+
+    .memory-caption {
+      margin-top: 15px;
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--script);
+      font-size: 25px;
     }
 
     .memory-text {
@@ -702,65 +808,9 @@
       line-height: 1.8;
     }
 
-    .memory-caption {
-      margin-top: 15px;
-      text-align: center;
-      color: var(--muted);
-      font-family: var(--script);
-      font-size: 25px;
-    }
-
-    .memory-section {
-      padding: 90px 35px;
-    }
-
-    .memory-section.warm {
-      background: #f2e5d6;
-    }
-
-    .memory-section.light {
-      background: #fffaf2;
-    }
-
-    .memory-section.olive {
-      background: #e9e8dc;
-    }
-
-    /* Small photo collage */
-
-    .photo-collage {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      max-width: 650px;
-      margin: 35px auto 0;
-      align-items: center;
-    }
-
-    .collage-photo {
-      padding: 7px;
-      background: #fffdf8;
-      box-shadow: 0 8px 25px #553b2918;
-    }
-
-    .collage-photo img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 5 / 4;
-      object-fit: cover;
-      background: #e9ddce;
-    }
-
-    .collage-photo:first-child {
-      transform: rotate(-3deg) translateY(10px);
-    }
-
-    .collage-photo:last-child {
-      transform: rotate(3deg) translateY(-10px);
-    }
-
     /* =========================================
-       SAVE-THE-DATE DIVIDER
+       DATE DIVIDER
+       Clean burgundy background, no tree border.
     ========================================= */
 
     .date-divider {
@@ -770,11 +820,7 @@
       overflow: hidden;
       color: #fff7eb;
       background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          #a9624b,
-          transparent 80%
-        ),
+        radial-gradient(ellipse at 50% 0%, #a9624b, transparent 80%),
         var(--burgundy);
     }
 
@@ -810,7 +856,7 @@
       font-weight: 500;
     }
 
-    .date-divider .date-copy {
+    .date-copy {
       margin: 20px 0 0;
       font-size: 14px;
       letter-spacing: 4px;
@@ -819,16 +865,49 @@
     }
 
     /* =========================================
+       INTEGRATED PHOTO COLLAGE
+    ========================================= */
+
+    .photo-collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 18px;
+
+      max-width: 650px;
+      margin: 38px auto 0;
+    }
+
+    .collage-photo {
+      padding: 7px;
+      background: #fffdf8;
+      box-shadow: 0 8px 25px #553b2918;
+    }
+
+    .collage-photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 5 / 4;
+      object-fit: cover;
+      background: #e9ddce;
+    }
+
+    .collage-photo:first-child {
+      transform: rotate(-3deg) translateY(10px);
+    }
+
+    .collage-photo:last-child {
+      transform: rotate(3deg) translateY(-10px);
+    }
+
+    /* =========================================
        WEDDING DETAILS
+       Clean olive-toned background.
     ========================================= */
 
     .details {
       background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          #fffaf2,
-          transparent 75%
-        ),
+        radial-gradient(ellipse at 50% 0%, #fffaf2, transparent 75%),
         #e9e8dc;
     }
 
@@ -844,8 +923,9 @@
       max-width: 640px;
       margin: 40px auto 0;
       padding: 25px 35px;
+
       border: 1px solid #c8b89f;
-      background: #fffaf2c9;
+      background: #fffaf2d9;
       box-shadow: 0 10px 30px #49372b0d;
     }
 
@@ -866,7 +946,6 @@
     .detail-label {
       margin: 0 0 8px;
       color: var(--olive-dark);
-      font-family: var(--serif);
       font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -874,9 +953,9 @@
 
     .detail-value {
       margin: 0;
+      color: var(--burgundy);
       font-size: 28px;
       line-height: 1.4;
-      color: var(--burgundy);
     }
 
     .detail-note {
@@ -904,13 +983,16 @@
       display: inline-block;
       margin-top: 30px;
       padding: 16px 32px;
+
       border: 1px solid var(--burgundy);
       background: var(--burgundy);
       color: #fffaf2;
+
       text-decoration: none;
       font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
+
       transition:
         color 0.3s ease,
         background 0.3s ease,
@@ -932,8 +1014,7 @@
       padding: 65px 20px;
       text-align: center;
       overflow: hidden;
-      background:
-        linear-gradient(145deg, #eee0ce, #e6d6c1);
+      background: linear-gradient(145deg, #eee0ce, #e6d6c1);
     }
 
     .footer .closing {
@@ -967,9 +1048,11 @@
     .reveal {
       opacity: 0;
       transform: translateY(32px);
+
       transition:
         opacity 0.9s ease,
         transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+
       transition-delay: var(--reveal-delay, 0ms);
     }
 
@@ -986,8 +1069,6 @@
       transform: translate(0, 0);
     }
 
-    /* Staggered reveal for items in a group */
-
     .stagger > *:nth-child(2) {
       --reveal-delay: 120ms;
     }
@@ -1001,18 +1082,12 @@
     }
 
     /* =========================================
-       MOBILE LAYOUT
+       TABLET AND MOBILE
     ========================================= */
 
     @media (max-width: 700px) {
       .intro::before {
         inset: 12px;
-      }
-
-      .intro::after {
-        top: 30px;
-        right: 25px;
-        font-size: 21px;
       }
 
       .intro-subtitle {
@@ -1030,7 +1105,7 @@
 
       .hero {
         min-height: 88svh;
-        padding: 75px 24px;
+        padding: 75px 20px;
       }
 
       .hero::before {
@@ -1038,7 +1113,18 @@
       }
 
       .hero h1 {
-        font-size: clamp(58px, 13vw, 86px);
+        font-size: clamp(56px, 12vw, 82px);
+      }
+
+      /* Keep the trees visible without crowding mobile text. */
+
+      .autumn-tree {
+        width: 105px;
+        opacity: 0.34;
+      }
+
+      .hero-content {
+        max-width: 510px;
       }
 
       .section {
@@ -1046,13 +1132,13 @@
       }
 
       .memory-section {
-        padding: 65px 25px;
+        padding: 65px 22px;
       }
 
       .memory-row {
         grid-template-columns: 1fr;
         gap: 32px;
-        max-width: 460px;
+        max-width: 440px;
       }
 
       .memory-row.reverse .memory-image,
@@ -1062,14 +1148,14 @@
 
       .memory-image,
       .memory-row.reverse .memory-image {
-        width: min(100%, 390px);
+        width: min(100%, 360px);
         margin: 0 auto;
         transform: rotate(-1.5deg);
       }
 
       .memory-text {
-        text-align: center;
         padding: 0 4px;
+        text-align: center;
       }
 
       .memory-text h2 {
@@ -1095,6 +1181,26 @@
       .website-section {
         padding: 75px 22px;
       }
+
+      .leaf-one {
+        --size: 68px;
+      }
+
+      .leaf-two {
+        --size: 54px;
+      }
+
+      .leaf-three {
+        --size: 72px;
+      }
+
+      .leaf-four {
+        --size: 60px;
+      }
+
+      .leaf-five {
+        --size: 75px;
+      }
     }
 
     @media (max-width: 380px) {
@@ -1118,9 +1224,18 @@
       .hero-date {
         letter-spacing: 2.5px;
       }
+
+      .autumn-tree {
+        width: 78px;
+        opacity: 0.25;
+      }
+
+      .leaf {
+        opacity: 0.55;
+      }
     }
 
-    /* Respect visitors who prefer less animation */
+    /* Respect visitors who prefer reduced animation. */
 
     @media (prefers-reduced-motion: reduce) {
       html {
@@ -1146,14 +1261,10 @@
 <body>
 
   <!-- =======================================
-       OPENING SCREEN
+       OPENING ENVELOPE
   ======================================== -->
 
-  <section
-    class="intro"
-    id="intro"
-    aria-label="Wedding invitation envelope"
-  >
+  <section class="intro" id="intro" aria-label="Wedding invitation envelope">
 
     <div class="leaf-layer" aria-hidden="true">
       <span class="leaf leaf-one">🍂</span>
@@ -1161,6 +1272,7 @@
       <span class="leaf leaf-three">🍂</span>
       <span class="leaf leaf-four">🍁</span>
       <span class="leaf leaf-five">🍂</span>
+      <span class="leaf leaf-six">🍁</span>
     </div>
 
     <div class="intro-content">
@@ -1206,7 +1318,7 @@
 
 
   <!-- =======================================
-       FULL WEDDING PAGE
+       INVITATION PAGE
   ======================================== -->
 
   <main
@@ -1218,14 +1330,114 @@
 
     <div class="page-inner">
 
-      <!-- HERO / NAMES -->
+      <!-- HERO: NAMES WITH AUTUMN TREES -->
 
       <header class="hero">
 
         <div class="leaf-layer" aria-hidden="true">
           <span class="leaf leaf-one">🍂</span>
           <span class="leaf leaf-two">🍁</span>
-          <span class="leaf leaf-four">🍂</span>
+          <span class="leaf leaf-three">🍂</span>
+          <span class="leaf leaf-four">🍁</span>
+          <span class="leaf leaf-five">🍂</span>
+        </div>
+
+        <div class="tree-frame" aria-hidden="true">
+
+          <!-- Left illustrated tree -->
+          <svg class="autumn-tree left" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 Q180 680 220 660 L220 700 L0 700 Z"/>
+
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/>
+              <circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/>
+              <circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/>
+              <circle cx="120" cy="69" r="28"/>
+            </g>
+
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/>
+              <circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/>
+              <circle cx="150" cy="192" r="27"/>
+              <circle cx="26" cy="218" r="23"/>
+            </g>
+
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/>
+              <circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+              <circle cx="143" cy="167" r="25"/>
+            </g>
+
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/>
+              <circle cx="112" cy="87" r="23"/>
+              <circle cx="65" cy="227" r="24"/>
+            </g>
+
+            <g class="foliage-burgundy">
+              <circle cx="100" cy="205" r="22"/>
+              <circle cx="140" cy="145" r="20"/>
+            </g>
+          </svg>
+
+          <!-- Right illustrated tree -->
+          <svg class="autumn-tree right" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 Q180 680 220 660 L220 700 L0 700 Z"/>
+
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/>
+              <circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/>
+              <circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/>
+              <circle cx="120" cy="69" r="28"/>
+            </g>
+
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/>
+              <circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/>
+              <circle cx="150" cy="192" r="27"/>
+              <circle cx="26" cy="218" r="23"/>
+            </g>
+
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/>
+              <circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+              <circle cx="143" cy="167" r="25"/>
+            </g>
+
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/>
+              <circle cx="112" cy="87" r="23"/>
+              <circle cx="65" cy="227" r="24"/>
+            </g>
+
+            <g class="foliage-burgundy">
+              <circle cx="100" cy="205" r="22"/>
+              <circle cx="140" cy="145" r="20"/>
+            </g>
+          </svg>
+
         </div>
 
         <div class="hero-content">
@@ -1246,7 +1458,7 @@
             ✧ &nbsp; ❧ &nbsp; ✧
           </div>
 
-          <!-- CHANGE YOUR DATE HERE -->
+          <!-- CHANGE YOUR WEDDING DATE HERE -->
 
           <p class="hero-date reveal">
             Please save our date<br>
@@ -1262,16 +1474,16 @@
       </header>
 
 
-      <!-- INTRODUCTORY MESSAGE -->
+      <!-- INTRODUCTION: CLEAN PAPER BACKGROUND -->
 
-      <section class="section story">
+      <section class="section">
 
         <p class="eyebrow reveal">
           A new chapter begins
         </p>
 
         <h2 class="section-heading reveal">
-          We’re getting married!
+          We're getting married!
         </h2>
 
         <div class="small-ornament reveal">
@@ -1299,15 +1511,76 @@
       </section>
 
 
-      <!-- MEMORY ONE: PHOTO AND TEXT -->
+      <!-- STORY ONE: AUTUMN TREES + PHOTO -->
 
       <section class="memory-section warm">
+
+        <div class="leaf-layer" aria-hidden="true">
+          <span class="leaf leaf-one">🍂</span>
+          <span class="leaf leaf-three">🍁</span>
+          <span class="leaf leaf-five">🍂</span>
+        </div>
+
+        <div class="tree-frame" aria-hidden="true">
+
+          <svg class="autumn-tree left" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 L220 660 L220 700 L0 700 Z"/>
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/><circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/><circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/><circle cx="120" cy="69" r="28"/>
+            </g>
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/><circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/><circle cx="150" cy="192" r="27"/>
+            </g>
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/><circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+            </g>
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/><circle cx="112" cy="87" r="23"/>
+            </g>
+          </svg>
+
+          <svg class="autumn-tree right" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 L220 660 L220 700 L0 700 Z"/>
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/><circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/><circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/><circle cx="120" cy="69" r="28"/>
+            </g>
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/><circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/><circle cx="150" cy="192" r="27"/>
+            </g>
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/><circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+            </g>
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/><circle cx="112" cy="87" r="23"/>
+            </g>
+          </svg>
+
+        </div>
 
         <div class="memory-row">
 
           <div class="memory-image reveal from-left">
 
-            <!-- PHOTO 1 -->
             <img
               src="photos/couple-1.jpg"
               alt="A favourite photo of us together"
@@ -1326,9 +1599,7 @@
               It started with a moment
             </p>
 
-            <h2>
-              Our Story
-            </h2>
+            <h2>Our Story</h2>
 
             <p>
               Every great love story is made up of little moments:
@@ -1349,7 +1620,7 @@
       </section>
 
 
-      <!-- DATE DIVIDER -->
+      <!-- DATE DIVIDER: SIMPLE BURGUNDY -->
 
       <section class="date-divider">
 
@@ -1368,15 +1639,76 @@
       </section>
 
 
-      <!-- MEMORY TWO: TEXT AND PHOTO -->
+      <!-- STORY TWO: TREES + PHOTO -->
 
       <section class="memory-section light">
+
+        <div class="leaf-layer" aria-hidden="true">
+          <span class="leaf leaf-two">🍁</span>
+          <span class="leaf leaf-four">🍂</span>
+          <span class="leaf leaf-six">🍁</span>
+        </div>
+
+        <div class="tree-frame" aria-hidden="true">
+
+          <svg class="autumn-tree left" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 L220 660 L220 700 L0 700 Z"/>
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/><circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/><circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/><circle cx="120" cy="69" r="28"/>
+            </g>
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/><circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/><circle cx="150" cy="192" r="27"/>
+            </g>
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/><circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+            </g>
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/><circle cx="112" cy="87" r="23"/>
+            </g>
+          </svg>
+
+          <svg class="autumn-tree right" viewBox="0 0 220 700" preserveAspectRatio="none">
+            <path class="tree-ground" d="M0 670 Q70 640 140 668 L220 660 L220 700 L0 700 Z"/>
+            <path class="tree-trunk" d="M60 700 C70 590 72 490 88 390 C98 320 76 250 75 180"/>
+            <path class="tree-branch" d="M86 430 C50 380 35 330 24 270"/>
+            <path class="tree-branch" d="M80 480 C118 420 145 385 160 320"/>
+            <path class="tree-branch" d="M77 340 C115 300 133 250 143 205"/>
+            <path class="tree-branch" d="M76 250 C48 210 45 180 42 145"/>
+            <path class="tree-branch" d="M75 190 C103 160 116 130 120 90"/>
+            <g class="foliage-rust">
+              <circle cx="24" cy="255" r="27"/><circle cx="43" cy="220" r="32"/>
+              <circle cx="69" cy="187" r="30"/><circle cx="75" cy="145" r="34"/>
+              <circle cx="109" cy="105" r="32"/><circle cx="120" cy="69" r="28"/>
+            </g>
+            <g class="foliage-orange">
+              <circle cx="44" cy="180" r="29"/><circle cx="93" cy="166" r="35"/>
+              <circle cx="130" cy="134" r="31"/><circle cx="150" cy="192" r="27"/>
+            </g>
+            <g class="foliage-gold">
+              <circle cx="76" cy="108" r="30"/><circle cx="106" cy="135" r="27"/>
+              <circle cx="48" cy="144" r="24"/>
+            </g>
+            <g class="foliage-olive">
+              <circle cx="20" cy="187" r="21"/><circle cx="112" cy="87" r="23"/>
+            </g>
+          </svg>
+
+        </div>
 
         <div class="memory-row reverse">
 
           <div class="memory-image reveal from-right">
 
-            <!-- PHOTO 2 -->
             <img
               src="photos/couple-2.jpg"
               alt="Another special moment together"
@@ -1395,9 +1727,7 @@
               All the moments in between
             </p>
 
-            <h2>
-              Better Together
-            </h2>
+            <h2>Better Together</h2>
 
             <p>
               From everyday adventures to the memories we'll
@@ -1417,9 +1747,9 @@
       </section>
 
 
-      <!-- SMALL PHOTO COLLAGE INSTEAD OF A LARGE GALLERY -->
+      <!-- PHOTO COLLAGE: CLEAN BACKGROUND -->
 
-      <section class="section story">
+      <section class="section">
 
         <p class="eyebrow reveal">
           A few favourite memories
@@ -1438,25 +1768,19 @@
         <div class="photo-collage stagger">
 
           <div class="collage-photo reveal">
-
-            <!-- PHOTO 3 -->
             <img
               src="photos/couple-3.jpg"
               alt="A memory from our time together"
               loading="lazy"
             >
-
           </div>
 
           <div class="collage-photo reveal">
-
-            <!-- PHOTO 4 -->
             <img
               src="photos/couple-4.jpg"
               alt="A photo of us celebrating"
               loading="lazy"
             >
-
           </div>
 
         </div>
@@ -1464,7 +1788,7 @@
       </section>
 
 
-      <!-- WEDDING DETAILS -->
+      <!-- WEDDING DETAILS: SIMPLE OLIVE BACKGROUND -->
 
       <section class="section details">
 
@@ -1487,11 +1811,7 @@
 
             <div class="detail-icon">✧</div>
 
-            <p class="detail-label">
-              The Date
-            </p>
-
-            <!-- CHANGE YOUR WEDDING DATE HERE -->
+            <p class="detail-label">The Date</p>
 
             <p class="detail-value">
               Your Wedding Date
@@ -1503,16 +1823,11 @@
 
           </div>
 
-
           <div class="detail-item reveal">
 
             <div class="detail-icon">❧</div>
 
-            <p class="detail-label">
-              The Location
-            </p>
-
-            <!-- CHANGE YOUR VENUE HERE -->
+            <p class="detail-label">The Location</p>
 
             <p class="detail-value">
               Your Venue or City
@@ -1524,14 +1839,11 @@
 
           </div>
 
-
           <div class="detail-item reveal">
 
             <div class="detail-icon">♡</div>
 
-            <p class="detail-label">
-              More Information
-            </p>
+            <p class="detail-label">More Information</p>
 
             <p class="detail-value">
               Formal Invitation to Follow
@@ -1549,7 +1861,7 @@
       </section>
 
 
-      <!-- LINK TO YOUR MAIN WEDDING WEBSITE -->
+      <!-- MAIN WEDDING WEBSITE LINK -->
 
       <section class="website-section">
 
@@ -1569,10 +1881,7 @@
           to know about our celebration.
         </p>
 
-        <!--
-          IMPORTANT:
-          Replace the URL below with your real wedding website.
-        -->
+        <!-- Replace this with your real wedding website URL. -->
 
         <a
           class="website-button reveal"
@@ -1586,7 +1895,7 @@
       </section>
 
 
-      <!-- CLOSING -->
+      <!-- FOOTER -->
 
       <footer class="footer">
 
@@ -1598,11 +1907,7 @@
 
         <div class="reveal" style="position: relative; z-index: 2;">
 
-          <p class="closing">
-            With love,
-          </p>
-
-          <!-- CHANGE YOUR NAMES HERE TOO -->
+          <p class="closing">With love,</p>
 
           <p class="footer-names">
             Your Name &amp; Your Partner
@@ -1612,9 +1917,7 @@
             We can't wait to celebrate with you.
           </p>
 
-          <div class="footer-heart">
-            ♥
-          </div>
+          <div class="footer-heart">♥</div>
 
         </div>
 
@@ -1625,7 +1928,7 @@
 
 
   <!-- =======================================
-       JAVASCRIPT: ENVELOPE + SCROLL ANIMATIONS
+       ENVELOPE AND SCROLL ANIMATIONS
   ======================================== -->
 
   <script>
@@ -1635,8 +1938,8 @@
     const invitationPage = document.getElementById("invitationPage");
 
     let isOpening = false;
+    let revealObserver = null;
 
-    // Open the envelope when clicked or tapped.
     function openInvitation() {
       if (isOpening) return;
 
@@ -1645,35 +1948,25 @@
       envelopeButton.disabled = true;
       tapHint.textContent = "Opening with love...";
 
-      // Begin the envelope-opening animation.
       intro.classList.add("opening");
 
-      // Reveal the invitation after the envelope has opened.
       window.setTimeout(() => {
         intro.classList.add("opened");
         invitationPage.classList.add("visible");
         invitationPage.setAttribute("aria-hidden", "false");
 
-        // Allow the invitation itself to scroll.
-        document.body.style.overflow = "hidden";
-
-        invitationPage.scrollTop = 0;
-
-        // Start the scroll reveal animations.
         startScrollReveals();
-
       }, 1000);
     }
 
     envelopeButton.addEventListener("click", openInvitation);
 
 
-    // Fade and slide content into view as visitors scroll.
+    /* Reveal headings, photos and text when they enter view. */
+
     function startScrollReveals() {
       const revealElements = document.querySelectorAll(".reveal");
 
-      // If the browser does not support IntersectionObserver,
-      // show everything instead of leaving content invisible.
       if (!("IntersectionObserver" in window)) {
         revealElements.forEach((element) => {
           element.classList.add("visible");
@@ -1682,14 +1975,16 @@
         return;
       }
 
-      const observer = new IntersectionObserver(
-        (entries, currentObserver) => {
+      if (revealObserver) {
+        revealObserver.disconnect();
+      }
+
+      revealObserver = new IntersectionObserver(
+        (entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-
-              // Each element animates only once.
-              currentObserver.unobserve(entry.target);
+              observer.unobserve(entry.target);
             }
           });
         },
@@ -1701,7 +1996,7 @@
       );
 
       revealElements.forEach((element) => {
-        observer.observe(element);
+        revealObserver.observe(element);
       });
     }
   </script>
