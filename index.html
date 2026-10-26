@@ -3,314 +3,716 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Save the Date</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ec">
+
+  <title>Save the Date | Our Wedding</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --cream: #f7f3ec;
+      --paper: #fffdf8;
+      --sage: #899681;
+      --sage-dark: #596653;
+      --champagne: #d7b99b;
+      --ink: #4e4a40;
+      --muted: #81796d;
+      --line: #e6dbce;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --script: "Dancing Script", cursive;
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      background: #f7f1eb;
-      color: #51443c;
-      font-family: "Cormorant Garamond", serif;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .container {
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ---------- OPENING SCREEN ---------- */
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 25px 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 38%, #fffdf9 0%, transparent 60%),
+        linear-gradient(140deg, #eee5d9, #faf7f0 50%, #e9e3d7);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .intro::before,
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(137, 150, 129, 0.25);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .intro::before {
+      top: -150px;
+      left: -100px;
+    }
+
+    .intro::after {
+      right: -130px;
+      bottom: -150px;
+    }
+
+    .intro-content {
       width: 100%;
-      max-width: 560px;
+      max-width: 520px;
       text-align: center;
     }
 
-    h1 {
-      font-family: "Dancing Script", cursive;
-      font-size: clamp(2.6rem, 8vw, 3.8rem);
-      font-weight: 600;
-      margin: 0 0 8px;
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--sage-dark);
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
 
-    .subtitle {
-      font-size: 1.15rem;
-      margin-bottom: 70px;
-      color: #8c786b;
+    .intro h1 {
+      margin: 0;
+      font-family: var(--script);
+      font-size: clamp(48px, 10vw, 72px);
+      font-weight: 500;
+      line-height: 1.1;
     }
 
-    /* Envelope */
+    .intro-subtitle {
+      margin: 12px 0 56px;
+      color: var(--muted);
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
 
-    .envelope-wrapper {
-      position: relative;
+    .envelope-button {
       display: block;
-      width: min(320px, 85vw);
+      width: min(320px, 84vw);
       height: 210px;
-      margin: 0 auto 30px;
+      position: relative;
+      margin: 0 auto;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
       perspective: 1000px;
-      -webkit-tap-highlight-color: transparent;
+    }
+
+    .envelope-button:focus-visible {
+      outline: 2px solid var(--sage-dark);
+      outline-offset: 10px;
+      border-radius: 5px;
     }
 
     .envelope {
       position: absolute;
       inset: 0;
-      background: #c9a995;
+      background: #d2b6a0;
       border-radius: 3px;
-      box-shadow: 0 15px 30px rgba(75, 53, 40, 0.16);
+      box-shadow: 0 18px 38px rgba(77, 60, 43, 0.2);
     }
-
-    /* The letter */
 
     .letter {
       position: absolute;
-      left: 6%;
+      left: 7%;
       bottom: 5px;
-      width: 88%;
-      height: 190px;
-      padding: 24px 12px;
-      background: #fffdf9;
-      border: 1px solid #e8d9ca;
       z-index: 2;
-      overflow: hidden;
-      transition:
-        transform 1s ease,
-        height 1s ease,
-        z-index 0s 0.5s;
+      width: 86%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: var(--paper);
+      border: 1px solid #e9ddce;
+      transition: transform 1s ease, height 1s ease;
     }
 
-    .invitation {
+    .letter-inner {
+      color: var(--ink);
       opacity: 0;
-      transition: opacity 0.6s ease 0.25s;
+      transition: opacity 0.4s ease;
     }
 
-    .invitation h2 {
-      margin: 0 0 12px;
-      font-family: "Dancing Script", cursive;
-      font-size: 2.2rem;
-      font-weight: 600;
+    .letter-inner span {
+      display: block;
+      font-family: var(--script);
+      font-size: 31px;
     }
 
-    .invitation .names {
-      font-size: 1.8rem;
-      margin: 8px 0;
+    .letter-inner small {
+      font-size: 10px;
+      letter-spacing: 3px;
     }
 
-    .invitation .date {
-      margin: 12px 0;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .invitation .location {
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    .invitation .note {
-      margin-top: 18px;
-      font-size: 1rem;
-      font-style: italic;
-    }
-
-    /* Envelope front */
-
-    .front {
+    .envelope-front {
       position: absolute;
       inset: 0;
       z-index: 4;
-      background: #d8b9a4;
-      clip-path: polygon(
-        0 0,
-        50% 58%,
-        100% 0,
-        100% 100%,
-        0 100%
-      );
+      background: #c9a68d;
+      clip-path: polygon(0 0, 50% 59%, 100% 0, 100% 100%, 0 100%);
       pointer-events: none;
     }
 
-    /* Envelope flap */
-
-    .flap {
+    .envelope-flap {
       position: absolute;
       inset: 0;
       z-index: 5;
-      background: #e3c8b5;
-      clip-path: polygon(0 0, 100% 0, 50% 58%);
+      background: #e0c8b4;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
       transform-origin: top center;
-      transform: rotateX(0deg);
-      transition:
-        transform 0.7s ease,
-        z-index 0s 0.35s;
-      backface-visibility: visible;
+      transition: transform 0.75s ease, opacity 0.3s ease;
       pointer-events: none;
     }
 
-    .seal {
+    .wax-seal {
       position: absolute;
-      z-index: 6;
+      top: 49%;
       left: 50%;
-      top: 48%;
-      width: 38px;
-      height: 38px;
-      transform: translate(-50%, -50%);
+      z-index: 6;
       display: grid;
       place-items: center;
+      width: 39px;
+      height: 39px;
+      transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: #a76e60;
-      color: #fff8f0;
-      font-size: 19px;
-      box-shadow: 0 2px 5px rgba(70, 40, 30, 0.12);
+      background: #9d6e60;
+      color: #fff8ef;
+      font-size: 20px;
+      box-shadow: 0 3px 7px #76534130;
       transition: opacity 0.25s ease;
       pointer-events: none;
     }
 
-    .hint {
-      color: #8c786b;
-      font-size: 1rem;
-      letter-spacing: 1px;
+    .tap-hint {
+      margin: 35px 0 0;
+      color: var(--sage-dark);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    .footer {
-      margin-top: 65px;
-      color: #8c786b;
-      font-size: 1.05rem;
+    .intro.opening .envelope-flap {
+      transform: rotateX(180deg);
+      opacity: 0.5;
     }
 
-    /* Open animation */
-
-    .envelope-wrapper.is-open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-    .envelope-wrapper.is-open .letter {
-  height: 330px;
-  transform: translateY(-60px);
-  z-index: 6;
-  overflow: visible;
-
-  transition:
-    transform 1s ease 0.35s,
-    height 1s ease 0.35s;
-}
-
-    .envelope-wrapper.is-open .invitation {
-  opacity: 1;
-  transition-delay: 0.9s;
-}
-
-    .envelope-wrapper.is-open .seal {
+    .intro.opening .wax-seal {
       opacity: 0;
     }
 
-    @media (max-width: 400px) {
-      .subtitle {
-        margin-bottom: 55px;
+    .intro.opening .letter {
+      height: 250px;
+      transform: translateY(-85px);
+    }
+
+    .intro.opening .letter-inner {
+      opacity: 1;
+      transition-delay: 0.45s;
+    }
+
+    .intro.opened {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ---------- FULL INVITATION PAGE ---------- */
+
+    .invitation-page {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: var(--paper);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    .invitation-page.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-inner {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: 92svh;
+      align-items: center;
+      justify-content: center;
+      padding: 85px 24px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 20%, #ffffff 0%, transparent 55%),
+        linear-gradient(150deg, #f2e9dc, #faf7f0 60%, #e6e9df);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(137, 150, 129, 0.55);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 720px;
+    }
+
+    .hero h1 {
+      margin: 16px 0;
+      font-family: var(--script);
+      font-size: clamp(60px, 12vw, 105px);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .ampersand {
+      display: block;
+      margin: 4px 0;
+      color: var(--sage);
+      font-family: var(--script);
+      font-size: 46px;
+    }
+
+    .hero-date {
+      margin-top: 28px;
+      font-size: 14px;
+      letter-spacing: 4px;
+      line-height: 1.8;
+      text-transform: uppercase;
+    }
+
+    .ornament {
+      margin: 24px 0;
+      color: var(--sage);
+      letter-spacing: 10px;
+    }
+
+    .section {
+      padding: 80px 25px;
+      text-align: center;
+    }
+
+    .section-heading {
+      margin: 0 0 20px;
+      font-family: var(--script);
+      font-size: clamp(38px, 7vw, 54px);
+      font-weight: 500;
+    }
+
+    .section-copy {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 21px;
+      line-height: 1.7;
+    }
+
+    .story {
+      background: #fffdf8;
+    }
+
+    /* ---------- PHOTO GALLERY ---------- */
+
+    .gallery {
+      background: #f0eee6;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 760px;
+      margin: 38px auto 0;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: linear-gradient(145deg, #e0d6c8, #cbd2c2);
+      border: 7px solid #fffdf8;
+      box-shadow: 0 5px 18px #5a51421a;
+    }
+
+    .photo:first-child {
+      transform: translateY(20px);
+    }
+
+    .photo-caption {
+      margin: 32px auto 0;
+      color: var(--muted);
+      font-family: var(--script);
+      font-size: 28px;
+    }
+
+    /* ---------- WEDDING DETAILS ---------- */
+
+    .details {
+      background:
+        radial-gradient(ellipse at 50% 0%, #fffdf8, transparent 70%),
+        #e9eee5;
+    }
+
+    .details-card {
+      max-width: 600px;
+      margin: 35px auto 0;
+      padding: 35px 22px;
+      border: 1px solid #cbd4c4;
+      background: #ffffff80;
+    }
+
+    .detail-item {
+      padding: 18px 0;
+    }
+
+    .detail-item + .detail-item {
+      border-top: 1px solid #d9dfd2;
+    }
+
+    .detail-label {
+      margin: 0 0 8px;
+      color: var(--sage-dark);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .detail-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* ---------- WEDDING WEBSITE LINK ---------- */
+
+    .website-section {
+      padding: 85px 25px;
+      text-align: center;
+      background: #fffdf8;
+    }
+
+    .website-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      border: 1px solid var(--sage-dark);
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .website-button:hover {
+      color: white;
+      background: var(--sage-dark);
+    }
+
+    .footer {
+      padding: 45px 20px 55px;
+      text-align: center;
+      background: #e9e4d9;
+    }
+
+    .footer p {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+
+    .footer .closing {
+      font-family: var(--script);
+      font-size: 36px;
+      color: var(--ink);
+    }
+
+    @media (max-width: 520px) {
+      .intro-subtitle {
+        margin-bottom: 48px;
       }
 
-      .envelope-wrapper.is-open .letter {
-        height: 340px;
-        transform: translateY(-130px);
+      .envelope-button {
+        height: 190px;
       }
 
-      .invitation h2 {
-        font-size: 1.9rem;
+      .section {
+        padding: 65px 22px;
       }
 
-      .invitation .names {
-        font-size: 1.55rem;
+      .photo-grid {
+        gap: 10px;
+      }
+
+      .photo {
+        border-width: 4px;
+      }
+
+      .hero {
+        min-height: 85svh;
+      }
+
+      .hero::before {
+        inset: 13px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
-    <h1>Save the Date</h1>
-    <p class="subtitle">A little note for a very special day</p>
 
-    <button
-      class="envelope-wrapper"
-      id="envelopeButton"
-      type="button"
-      aria-label="Open the save-the-date envelope"
-      aria-expanded="false"
-    >
-      <div class="envelope">
-        <div class="letter">
-          <div class="invitation">
-            <h2>We're Getting Married!</h2>
+  <!-- OPENING ENVELOPE -->
+  <section class="intro" id="intro" aria-label="Wedding invitation envelope">
+    <div class="intro-content">
+      <p class="eyebrow">A little something special</p>
+      <h1>Save the Date</h1>
+      <p class="intro-subtitle">For a day filled with love</p>
 
-            <p>With love,</p>
+      <button
+        class="envelope-button"
+        id="envelopeButton"
+        type="button"
+        aria-label="Open our wedding invitation"
+      >
+        <div class="envelope">
+          <div class="letter">
+            <div class="letter-inner">
+              <small>PLEASE JOIN US</small>
+              <span>We're getting married!</span>
+            </div>
+          </div>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">♥</div>
+        </div>
+      </button>
 
-            <p class="names">Your Name &amp; Your Partner's Name</p>
+      <p class="tap-hint" id="tapHint">Tap to open your invitation</p>
+    </div>
+  </section>
 
-            <p class="date">Your Wedding Date</p>
+  <!-- SCROLLABLE WEDDING WEBSITE -->
+  <main class="invitation-page" id="invitationPage" aria-label="Our wedding invitation">
+    <div class="page-inner">
 
-            <p class="location">
-              Your City or Venue<br>
-              Province / Country
-            </p>
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Together with our families</p>
 
-            <p class="note">
-              Formal invitation to follow
+          <!-- Replace these names -->
+          <h1>Your Name</h1>
+          <span class="ampersand">&</span>
+          <h1>Your Partner</h1>
+
+          <div class="ornament">✧ &nbsp; ✧ &nbsp; ✧</div>
+
+          <!-- Replace with your date -->
+          <p class="hero-date">
+            Please save our date<br>
+            Your Wedding Date
+          </p>
+        </div>
+      </header>
+
+      <!-- PERSONAL MESSAGE -->
+      <section class="section story">
+        <p class="eyebrow">A new chapter begins</p>
+        <h2 class="section-heading">We’re getting married!</h2>
+
+        <p class="section-copy">
+          We are so excited to celebrate this special chapter of our
+          lives with the people we love most. Please save the date
+          and join us as we begin our next adventure together.
+          We can't wait to celebrate with you!
+        </p>
+      </section>
+
+      <!-- PHOTOS -->
+      <section class="section gallery">
+        <p class="eyebrow">A few of our favourite moments</p>
+        <h2 class="section-heading">Our Story</h2>
+
+        <div class="photo-grid">
+          <!-- Add your photos to a folder called "photos".
+               Name them couple-1.jpg and couple-2.jpg. -->
+          <img
+            class="photo"
+            src="photos/couple-1.jpg"
+            alt="A favourite photo of us together"
+            loading="lazy"
+          >
+          <img
+            class="photo"
+            src="photos/couple-2.jpg"
+            alt="Another special moment together"
+            loading="lazy"
+          >
+          <img
+            class="photo"
+            src="photos/couple-3.jpg"
+            alt="A memory from our time together"
+            loading="lazy"
+          >
+          <img
+            class="photo"
+            src="photos/couple-4.jpg"
+            alt="A photo of us celebrating"
+            loading="lazy"
+          >
+        </div>
+
+        <p class="photo-caption">And this is just the beginning...</p>
+      </section>
+
+      <!-- DATE AND LOCATION -->
+      <section class="section details">
+        <p class="eyebrow">The important details</p>
+        <h2 class="section-heading">The Celebration</h2>
+
+        <div class="details-card">
+          <div class="detail-item">
+            <p class="detail-label">The Date</p>
+            <p class="detail-value">Your Wedding Date</p>
+            <p class="detail-note">Add the ceremony time if known</p>
+          </div>
+
+          <div class="detail-item">
+            <p class="detail-label">The Location</p>
+            <p class="detail-value">Your Venue or City</p>
+            <p class="detail-note">City, Province / Country</p>
+          </div>
+
+          <div class="detail-item">
+            <p class="detail-label">More Information</p>
+            <p class="detail-value">Formal invitation to follow</p>
+            <p class="detail-note">
+              More details will be shared closer to the day.
             </p>
           </div>
         </div>
+      </section>
 
-        <div class="front"></div>
-        <div class="flap"></div>
-        <div class="seal">♥</div>
-      </div>
-    </button>
+      <!-- LINK TO YOUR MAIN WEDDING WEBSITE -->
+      <section class="website-section">
+        <p class="eyebrow">Everything in one place</p>
+        <h2 class="section-heading">Visit Our Wedding Website</h2>
 
-    <p class="hint" id="hint">Click or tap the envelope to open</p>
+        <p class="section-copy">
+          Looking for more information? Visit our wedding website
+          for updates, travel details, and everything you need to know.
+        </p>
 
-    <footer class="footer">
-      We can't wait to celebrate with you!
-    </footer>
+        <!-- Replace the URL below with your real wedding website link -->
+        <a
+          class="website-button"
+          href="https://your-wedding-website.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Our Website ↗
+        </a>
+      </section>
+
+      <!-- CLOSING -->
+      <footer class="footer">
+        <p class="closing">With love,</p>
+        <p>Your Name &amp; Your Partner</p>
+        <p>We can't wait to celebrate with you ♡</p>
+      </footer>
+
+    </div>
   </main>
 
   <script>
+    const intro = document.getElementById("intro");
     const envelopeButton = document.getElementById("envelopeButton");
-    const hint = document.getElementById("hint");
+    const tapHint = document.getElementById("tapHint");
+    const invitationPage = document.getElementById("invitationPage");
 
-    envelopeButton.addEventListener("click", () => {
-      const isOpen = envelopeButton.classList.toggle("is-open");
+    let isOpening = false;
 
-      envelopeButton.setAttribute("aria-expanded", String(isOpen));
-      envelopeButton.setAttribute(
-        "aria-label",
-        isOpen
-          ? "Close the save-the-date envelope"
-          : "Open the save-the-date envelope"
-      );
+    function openInvitation() {
+      if (isOpening) return;
+      isOpening = true;
 
-      hint.textContent = isOpen
-        ? "Click or tap to close"
-        : "Click or tap the envelope to open";
-    });
+      envelopeButton.disabled = true;
+      tapHint.textContent = "Opening with love...";
+
+      // Play the envelope animation first.
+      intro.classList.add("opening");
+
+      // Then reveal the full scrollable invitation.
+      window.setTimeout(() => {
+        intro.classList.add("opened");
+        invitationPage.classList.add("visible");
+        document.body.style.overflow = "hidden";
+        invitationPage.scrollTop = 0;
+      }, 950);
+    }
+
+    envelopeButton.addEventListener("click", openInvitation);
   </script>
+
 </body>
 </html>
