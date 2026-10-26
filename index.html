@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5eee3">
+  <meta name="theme-color" content="#1e3048">
 
   <title>Save the Date | Our Wedding</title>
 
@@ -1255,6 +1255,186 @@
         transform: none;
       }
     }
+
+
+    /* =========================================
+       UPDATED WEDDING PALETTE + AUTUMN PHOTOGRAPHS
+       Burnt orange, deep navy, warm ivory and muted gold.
+    ========================================= */
+    :root {
+      --cream: #f7f0e6;
+      --paper: #fffaf2;
+      --paper-dark: #eee0cd;
+      --rust: #bd6038;
+      --rust-dark: #914323;
+      --burgundy: #1e3048;
+      --burgundy-dark: #142235;
+      --olive: #a56a43;
+      --olive-dark: #35465b;
+      --gold: #d5ad70;
+      --ink: #2e3540;
+      --muted: #686b70;
+      --line: #e4d4c1;
+    }
+
+    body { background: var(--cream); }
+    .page-inner, .invitation-page { background: var(--paper); }
+
+    /* Remove the hand-drawn trees so the cleaner real photographs lead. */
+    .tree-frame { display: none !important; }
+
+    .intro {
+      background:
+        radial-gradient(ellipse at 50% 38%, #fffaf3 0%, #f7f0e6 58%, #e8d8c7 100%);
+    }
+    .intro::before, .hero::before { border-color: #bd60386e; }
+    .intro h1, .hero h1, .section-heading, .memory-text h2,
+    .footer .closing, .detail-value { color: var(--burgundy); }
+    .eyebrow, .scroll-note, .tap-hint, .detail-label { color: var(--olive-dark); }
+    .ampersand, .small-ornament, .detail-icon, .footer-heart { color: var(--rust); }
+
+    /* Forest hero: softened with a light overlay so names remain readable. */
+    .hero {
+      background-image:
+        linear-gradient(180deg, rgba(255,250,242,.30), rgba(247,240,230,.42)),
+        url("https://images.unsplash.com/photo-1762515993692-7b9946f76858?auto=format&fit=crop&w=2200&q=85");
+      background-size: cover;
+      background-position: center 48%;
+      background-repeat: no-repeat;
+    }
+
+    /* Tree-photo backgrounds are intentionally soft, not high-contrast. */
+    .memory-section.warm {
+      background-image:
+        linear-gradient(100deg, rgba(247,240,230,.32), rgba(247,240,230,.44)),
+        url("https://images.unsplash.com/photo-1761053604333-8e7e96bae3ad?auto=format&fit=crop&w=2000&q=85");
+      background-size: cover;
+      background-position: center;
+    }
+    .memory-section.light {
+      background-image:
+        linear-gradient(100deg, rgba(255,250,242,.32), rgba(255,250,242,.44)),
+        url("https://images.unsplash.com/photo-1762515993692-7b9946f76858?auto=format&fit=crop&w=2000&q=85");
+      background-size: cover;
+      background-position: center 55%;
+    }
+    .memory-section.olive {
+      background: #e9e4d9;
+    }
+
+    /* Dark navy section for “And So Much More”. */
+    .dark-photo-section {
+      isolation: isolate;
+      overflow: hidden;
+      color: #fffaf2;
+      background-color: #1e3048;
+      background-image:
+        linear-gradient(180deg, rgba(20,34,53,.54), rgba(30,48,72,.66)),
+        url("https://images.unsplash.com/photo-1761053604333-8e7e96bae3ad?auto=format&fit=crop&w=2000&q=85");
+      background-size: cover;
+      background-position: center 42%;
+    }
+    .dark-photo-section > *:not(.leaf-layer) { position: relative; z-index: 1; }
+    .dark-photo-section .leaf-layer { z-index: 0; }
+    .dark-photo-section .eyebrow { color: #f0c99f; }
+    .dark-photo-section .section-heading { color: #fff6e9; }
+    .dark-photo-section .section-copy { color: #f2e7d9; }
+    .dark-photo-section .collage-photo {
+      background: #fffaf2;
+      box-shadow: 0 14px 35px rgba(0,0,0,.24);
+    }
+    .dark-photo-section .collage-photo img { background: #d8c7b4; }
+
+    .date-divider {
+      color: #fff7eb;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(189,96,56,.48), transparent 76%),
+        #1e3048;
+    }
+    .date-divider::before, .date-divider::after { color: #e5b67c; }
+    .date-divider .eyebrow { color: #f0c99f; }
+
+    .details {
+      background:
+        radial-gradient(ellipse at 50% 0%, #fffaf2, transparent 75%),
+        #e9e3d8;
+    }
+    .details-card { border-color: #d5b99b; background: rgba(255,250,242,.92); }
+    .website-button {
+      border-color: var(--burgundy);
+      background: var(--burgundy);
+    }
+    .website-button:hover { background: transparent; color: var(--burgundy); }
+    .footer {
+      background: linear-gradient(145deg, #f0e1cf, #e4d1bc);
+    }
+
+    /* A slightly fuller leaf fall, with some leaves smaller and more subtle. */
+    .leaf-seven {
+      --left: 14%; --size: 46px; --duration: 21s; --delay: -8s;
+      --drift: 68px; --opacity: .58;
+    }
+    .leaf-eight {
+      --left: 61%; --size: 57px; --duration: 26s; --delay: -14s;
+      --drift: -72px; --opacity: .62;
+    }
+    .leaf-nine {
+      --left: 83%; --size: 43px; --duration: 20s; --delay: -5s;
+      --drift: 55px; --opacity: .56;
+    }
+    .leaf-ten {
+      --left: 34%; --size: 49px; --duration: 24s; --delay: -17s;
+      --drift: -62px; --opacity: .58;
+    }
+    .leaf-eleven {
+      --left: 55%; --size: 38px; --duration: 22s; --delay: -11s;
+      --drift: 50px; --opacity: .52;
+    }
+    .leaf-twelve {
+      --left: 76%; --size: 48px; --duration: 25s; --delay: -19s;
+      --drift: -50px; --opacity: .55;
+    }
+    .leaf { filter: drop-shadow(0 4px 5px rgba(35,35,35,.14)); }
+
+    /* Smoother, gentler section reveals and image hover motion. */
+    .section, .memory-section, .date-divider, .website-section, .details,
+    .dark-photo-section, .footer {
+      transition: background-color .8s ease, color .8s ease;
+    }
+    .reveal {
+      transition:
+        opacity 1.05s ease,
+        transform 1.05s cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform;
+    }
+    .memory-image, .collage-photo {
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .8s ease;
+    }
+    .memory-image:hover, .collage-photo:hover {
+      box-shadow: 0 16px 38px rgba(40,35,30,.16);
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        background-position: center;
+        background-image:
+          linear-gradient(180deg, rgba(255,250,242,.38), rgba(247,240,230,.48)),
+          url("https://images.unsplash.com/photo-1762515993692-7b9946f76858?auto=format&fit=crop&w=1200&q=80");
+      }
+      .memory-section.warm, .memory-section.light {
+        background-position: center;
+      }
+      .dark-photo-section {
+        background-image:
+          linear-gradient(180deg, rgba(20,34,53,.56), rgba(30,48,72,.68)),
+          url("https://images.unsplash.com/photo-1761053604333-8e7e96bae3ad?auto=format&fit=crop&w=1200&q=80");
+      }
+      .leaf-seven { --size: 38px; }
+      .leaf-eight { --size: 45px; }
+      .leaf-nine { --size: 34px; }
+      .leaf-ten { --size: 39px; }
+    }
+
   </style>
 </head>
 
@@ -1273,6 +1453,9 @@
       <span class="leaf leaf-four">🍁</span>
       <span class="leaf leaf-five">🍂</span>
       <span class="leaf leaf-six">🍁</span>
+      <span class="leaf leaf-seven">🍂</span>
+      <span class="leaf leaf-eight">🍁</span>
+      <span class="leaf leaf-nine">🍂</span>
     </div>
 
     <div class="intro-content">
@@ -1340,6 +1523,9 @@
           <span class="leaf leaf-three">🍂</span>
           <span class="leaf leaf-four">🍁</span>
           <span class="leaf leaf-five">🍂</span>
+          <span class="leaf leaf-six">🍁</span>
+          <span class="leaf leaf-seven">🍂</span>
+          <span class="leaf leaf-eight">🍁</span>
         </div>
 
         <div class="tree-frame" aria-hidden="true">
@@ -1519,6 +1705,8 @@
           <span class="leaf leaf-one">🍂</span>
           <span class="leaf leaf-three">🍁</span>
           <span class="leaf leaf-five">🍂</span>
+          <span class="leaf leaf-seven">🍂</span>
+          <span class="leaf leaf-nine">🍁</span>
         </div>
 
         <div class="tree-frame" aria-hidden="true">
@@ -1647,6 +1835,8 @@
           <span class="leaf leaf-two">🍁</span>
           <span class="leaf leaf-four">🍂</span>
           <span class="leaf leaf-six">🍁</span>
+          <span class="leaf leaf-eight">🍂</span>
+          <span class="leaf leaf-ten">🍁</span>
         </div>
 
         <div class="tree-frame" aria-hidden="true">
@@ -1747,9 +1937,16 @@
       </section>
 
 
-      <!-- PHOTO COLLAGE: CLEAN BACKGROUND -->
+      <!-- PHOTO COLLAGE: NAVY AND AUTUMN PHOTO BACKGROUND -->
 
-      <section class="section">
+      <section class="section dark-photo-section">
+
+        <div class="leaf-layer" aria-hidden="true">
+          <span class="leaf leaf-two">🍂</span>
+          <span class="leaf leaf-seven">🍁</span>
+          <span class="leaf leaf-nine">🍂</span>
+          <span class="leaf leaf-twelve">🍁</span>
+        </div>
 
         <p class="eyebrow reveal">
           A few favourite memories
@@ -1903,6 +2100,8 @@
           <span class="leaf leaf-two">🍁</span>
           <span class="leaf leaf-three">🍂</span>
           <span class="leaf leaf-five">🍁</span>
+          <span class="leaf leaf-seven">🍂</span>
+          <span class="leaf leaf-ten">🍁</span>
         </div>
 
         <div class="reveal" style="position: relative; z-index: 2;">
